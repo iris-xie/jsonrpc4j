@@ -136,7 +136,7 @@ public class JsonRpcServerTest {
 
 		jsonRpcServer.handle(request, response);
 
-		assertTrue("application/json-rpc".equals(response.getContentType()));
+		assertTrue("application/json".equals(response.getContentType()));
 		checkSuccessfulResponse(response);
 	}
 
@@ -154,7 +154,7 @@ public class JsonRpcServerTest {
 
 		jsonRpcServer.handle(request, response);
 
-		assertTrue("application/json-rpc".equals(response.getContentType()));
+		assertTrue("application/json".equals(response.getContentType()));
 		checkSuccessfulResponse(response);
 	}
 

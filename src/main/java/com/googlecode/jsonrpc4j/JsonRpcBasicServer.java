@@ -36,7 +36,7 @@ import static com.googlecode.jsonrpc4j.Util.hasNonNullData;
 @SuppressWarnings({"unused", "WeakerAccess"})
 public class JsonRpcBasicServer {
 	
-	public static final String JSONRPC_CONTENT_TYPE = "application/json-rpc";
+	public static final String JSONRPC_CONTENT_TYPE = "application/json";
 	public static final String PARAMS = "params";
 	public static final String METHOD = "method";
 	public static final String JSONRPC = "jsonrpc";
