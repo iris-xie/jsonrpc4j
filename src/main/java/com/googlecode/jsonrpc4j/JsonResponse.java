@@ -1,6 +1,11 @@
 package com.googlecode.jsonrpc4j;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
 /**
  * Contains the JSON-RPC answer in {@code response}
@@ -21,6 +26,22 @@ public class JsonResponse {
     }
 
     public JsonNode getResponse() {
+        if(!response.has(JsonRpcBasicServer.CONTEXT)){
+            Object id0 = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getAttribute(JsonRpcServer.X_REQUEST_ID,0);
+            if(id0!=null) {
+                ObjectNode resNode = (ObjectNode) response;
+                ObjectMapper mapper = new ObjectMapper();
+                String id = id0.toString();
+                ObjectNode objectNode = mapper.createObjectNode();
+                objectNode.put(JsonRpcServer.X_REQUEST_ID, id);
+                Object context = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getAttribute(JsonRpcServer.X_REQUEST_CONTEXT, 0);
+                if (context != null) {
+                    objectNode.put(JsonRpcServer.X_REQUEST_CONTEXT, mapper.valueToTree(context));
+                }
+                resNode.put(JsonRpcBasicServer.CONTEXT, objectNode);
+                response = resNode;
+            }
+        }
         return response;
     }
 

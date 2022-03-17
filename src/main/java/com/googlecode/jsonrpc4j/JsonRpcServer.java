@@ -25,6 +25,9 @@ public class JsonRpcServer extends JsonRpcBasicServer {
 	private static final Logger logger = LoggerFactory.getLogger(JsonRpcServer.class);
 
 	private static final String GZIP = "gzip";
+	public static final String X_REQUEST_CONTEXT = "x-request-context";
+	public static final String X_REQUEST_ID = "x-request-id";
+
 	private String contentType = JSONRPC_CONTENT_TYPE;
 
 	/**

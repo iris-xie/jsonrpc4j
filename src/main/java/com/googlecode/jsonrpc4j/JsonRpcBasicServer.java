@@ -39,6 +39,7 @@ public class JsonRpcBasicServer {
 	public static final String JSONRPC_CONTENT_TYPE = "application/json";
 	public static final String PARAMS = "params";
 	public static final String METHOD = "method";
+	public static final String CONTEXT = "context";
 	public static final String JSONRPC = "jsonrpc";
 	public static final String ID = "id";
 	public static final String CONTENT_ENCODING = "Content-Encoding";
@@ -415,7 +416,7 @@ public class JsonRpcBasicServer {
 	 * @param node   the {@link JsonNode}
 	 * @return the {@link JsonResponse} instance
 	 */
-	private JsonResponse handleObject(final ObjectNode node)
+	public JsonResponse handleObject(final ObjectNode node)
 			throws JsonParseException, JsonMappingException {
 		logger.debug("Request: {}", node);
 		
